@@ -1,0 +1,53 @@
+---
+title: "Getting Started"
+description: "Let's start talking to the API."
+---
+
+## Introduction
+
+The public Dienst 3 API is accessible through REST http requests.
+We encourage you to create amazing applications which integrate with Dienst.
+We have created these documentation pages in order to provide you with the tools you need for this.
+If you prefer to do code generation or use an API platform you can download our [OpenAPI files](https://github.com/dienst3/docs/blob/main/openapi.yaml).
+
+## Authentication
+
+We support a few different methods to authenticate your requests.
+All have their use case, so make sure to read the next section carefully so you can find out which method is applicable to you.
+
+All tokens are Bearer authentication tokens, meaning you have to specify them in the `Authorization` header of your request like so:
+
+```bash
+'Authorization': 'Bearer <access_token>'
+```
+
+### OpenID Connect
+
+<Warning>This method is not yet available.</Warning>
+
+[OpenID Connect](https://openid.net/developers/how-connect-works/) is an industry standard for authorization of third party applications.
+You can utilize this framework with your favorite framework to get authorization for your application in minutes.
+Consult the documentation of your framework to see how to implement this.
+With <Tooltip tip="OpenID Connect">OIDC</Tooltip> you can fetch data and make calls on behalf of your members in a safe way.
+
+Within Dienst 3 OIDC clients are scoped to the association they belong to.
+If you want to use authorization with multiple associations, you'll have to create a client for every one independently.
+
+OIDC is of course a superset of [OAuth 2.0](https://oauth.net/2/), so if you don't need authentication you can disregard the OIDC layer.
+
+### Association Access Tokens
+
+<Warning>This method is not yet available.</Warning>
+
+Sometimes you just need to talk to our API to get some data or make changes to your association in a simple way.
+This is for example done in one-of scripts for generating reports or a tool which isn't available natively in Dienst 3.
+
+### Personal Access Tokens
+
+<Warning>This method is not yet available.</Warning>
+
+Association access tokens are very useful tools, but are scoped to one entire association.
+These can also only be created by administrators of an association, but you would still want to interact.
+This is what the <Tooltip tip="Personal Access Token">PAT</Tooltip> is made for.
+You can create this for your personal account, and is not limited to one assocation.
+With the PAT you can make all requests you can also do with the normal user interface, as it inherits the permissions of your account.

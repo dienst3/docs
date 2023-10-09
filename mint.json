@@ -1,6 +1,12 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "Dienst 3",
+  "openapi": "openapi.yaml",
+  "api": {
+    "auth": {
+      "inputPrefix": "Bearer"
+    }
+  },
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -26,7 +32,7 @@
   "tabs": [
     {
       "name": "API Reference",
-      "url": "api-reference"
+      "url": "routes"
     }
   ],
   "anchors": [
@@ -34,11 +40,6 @@
       "name": "Dienst 3",
       "icon": "user-group",
       "url": "https://dienst3.nl"
-    },
-    {
-      "name": "API References",
-      "icon": "code",
-      "url": "api-references"
     },
     {
       "name": "GitHub",
@@ -63,16 +64,15 @@
     },
     {
       "group": "API Documentation",
-      "pages": ["api-reference/authentication"]
+      "pages": ["routes/gettingstarted", "routes/errors"]
     },
     {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/update",
-        "api-reference/endpoint/delete"
-      ]
+      "group": "Schemes",
+      "pages": ["routes/scheme/account"]
+    },
+    {
+      "group": "Account",
+      "pages": ["routes/account/get", "routes/account/patch"]
     }
   ],
   "footerSocials": {

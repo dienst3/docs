@@ -1,0 +1,73 @@
+openapi: 3.1.0
+info:
+  title: Dienst 3
+  description: Public API for Dienst 3.
+  version: Beta
+servers:
+  - url: https://dienst3.nl
+    description: Base domain to send requests to.
+security:
+  - PAT: []
+tags:
+  - name: account
+    description: The account of a user.
+components:
+  securitySchemes:
+    PAT:
+      type: http
+      scheme: bearer
+  schemas:
+    Account:
+      type: object
+      properties:
+        id:
+          description: The identifier of an account.
+          type: string
+          format: uuid
+        name:
+          description: The name of the user of an account. Used for interactions with the user.
+          type: string
+          minLength: 3
+          maxLength: 100
+        email:
+          description: The email address of the user. Used for communication and authentication.
+          type: string
+          format: email
+          minLength: 3
+          maxLength: 100
+        emailVerified:
+          description: Wether the email address of the user is verified. This address can't be used for authentication if this is false.
+          type: boolean
+paths:
+  /api/account:
+    get:
+      summary: Get account
+      description: Get basic information about the currently logged in account.
+      tags:
+        - account
+      responses:
+        "200":
+          description: The current account.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+    patch:
+      summary: Update account
+      description: Partially update the account information.
+      tags:
+        - account
+      requestBody:
+        description: The information about the account to update. Omitted values are not changed.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      responses:
+        "200":
+          description: The updated account information.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
